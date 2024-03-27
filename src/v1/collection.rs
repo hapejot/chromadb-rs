@@ -315,7 +315,7 @@ impl ChromaCollection {
     ///
     pub fn peek(&self, limit: usize) -> Result<GetResult> {
         let get_query = GetOptions {
-            ids: vec![],
+            ids: None,
             where_metadata: None,
             limit: Some(limit),
             offset: None,
@@ -363,7 +363,7 @@ pub struct GetResult {
 
 #[derive(Serialize, Debug, Default)]
 pub struct GetOptions {
-    pub ids: Vec<String>,
+    pub ids: Option<Vec<String>>,
     pub where_metadata: Option<Value>,
     pub limit: Option<usize>,
     pub offset: Option<usize>,
@@ -513,7 +513,7 @@ mod tests {
         assert!(collection.count().is_ok());
 
         let get_query = GetOptions {
-            ids: vec![],
+            ids: None,
             where_metadata: None,
             limit: None,
             offset: None,
